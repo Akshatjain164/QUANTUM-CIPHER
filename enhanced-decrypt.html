@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumCrypt - Decryption Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="enhanced-styles.css">
+</head>
+<body>
+    <div id="main-content">
+        <div id="particles-js"></div>
+        <nav class="nav-bar">
+            <div class="logo">QUANTUMCRYPT</div>
+            <div class="nav-links">
+                <a href="enhanced-index.html">ENCRYPT</a>
+                <a href="#decrypt" class="active">DECRYPT</a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="mission-card">
+                <div class="status-bar">
+                    <div class="status-indicator blink"></div>
+                    <span class="status-text">SYSTEM ONLINE</span>
+                </div>
+                <h2 class="glitch">QUANTUM DECRYPTION</h2>
+                <div class="encryption-type-selector">
+                    <button class="type-btn active" data-type="text">
+                        <span class="icon">📝</span>
+                        <span>TEXT</span>
+                    </button>
+                    <button class="type-btn" data-type="image">
+                        <span class="icon">🖼️</span>
+                        <span>IMAGE</span>
+                    </button>
+                    <button class="type-btn" data-type="video">
+                        <span class="icon">🎬</span>
+                        <span>VIDEO</span>
+                    </button>
+                </div>
+                <!-- Text Decryption Form -->
+                <div id="text-form" class="encryption-form active">
+                    <div class="input-group">
+                        <label for="decryptCode">ENCRYPTED CODE</label>
+                        <textarea id="decryptCode" rows="5" placeholder="Paste encrypted code here..."></textarea>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="decryptPassword">QUANTUM KEY</label>
+                        <input type="password" id="decryptPassword" placeholder="Enter decryption key...">
+                        <div class="input-line"></div>
+                    </div>
+                    <button class="decrypt-btn" onclick="decryptMessage()">
+                        <span class="btn-text">DECRYPT MESSAGE</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                    <div id="decrypt-result-section" style="display: none;">
+                        <div class="output-box success">
+                            <label>DECRYPTED MESSAGE</label>
+                            <div class="cipher-output" id="decryptedDisplay"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Decryption Form -->
+                <div id="image-form" class="encryption-form">
+                    <div class="input-group">
+                        <label for="imageDecryptFile">ENCRYPTED IMAGE FILE</label>
+                        <div class="file-upload-area" id="imageDecryptUploadArea">
+                            <input type="file" id="imageDecryptFile" accept=".enc" style="display: none;">
+                            <div class="upload-placeholder">
+                                <span class="upload-icon">📁</span>
+                                <p>Click or drag encrypted file here</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>OR PASTE ENCRYPTED DATA</label>
+                        <textarea id="imageDecryptData" rows="5" placeholder="Paste encrypted data here..."></textarea>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="imageDecryptPassword">QUANTUM KEY</label>
+                        <input type="password" id="imageDecryptPassword" placeholder="Enter decryption key...">
+                        <div class="input-line"></div>
+                    </div>
+                    <button class="decrypt-btn" onclick="decryptImage()">
+                        <span class="btn-text">DECRYPT IMAGE</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                    <div id="image-decrypt-result-section" style="display: none;">
+                        <div class="output-box success">
+                            <label>DECRYPTED IMAGE</label>
+                            <img id="decryptedImagePreview" style="max-width: 100%; border-radius: 10px; margin-top: 1rem;">
+                            <button class="copy-btn" onclick="downloadDecryptedImage()" style="margin-top: 10px;">
+                                <span>DOWNLOAD IMAGE</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video Decryption Form -->
+                <div id="video-form" class="encryption-form">
+                    <div class="input-group">
+                        <label for="videoDecryptFile">ENCRYPTED VIDEO FILE</label>
+                        <div class="file-upload-area" id="videoDecryptUploadArea">
+                            <input type="file" id="videoDecryptFile" accept=".enc" style="display: none;">
+                            <div class="upload-placeholder">
+                                <span class="upload-icon">📁</span>
+                                <p>Click or drag encrypted file here</p>
+                                <small>Large files may take time to process</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="videoDecryptPassword">QUANTUM KEY</label>
+                        <input type="password" id="videoDecryptPassword" placeholder="Enter decryption key...">
+                        <div class="input-line"></div>
+                    </div>
+                    <button class="decrypt-btn" onclick="decryptVideo()">
+                        <span class="btn-text">DECRYPT VIDEO</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                    <div id="video-decrypt-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="videoDecryptProgressFill"></div>
+                        </div>
+                        <p class="progress-text" id="videoDecryptProgressText">Processing...</p>
+                    </div>
+                    <div id="video-decrypt-result-section" style="display: none;">
+                        <div class="output-box success">
+                            <label>DECRYPTED VIDEO</label>
+                            <video id="decryptedVideoPreview" style="max-width: 100%; border-radius: 10px; margin-top: 1rem;" controls></video>
+                            <button class="copy-btn" onclick="downloadDecryptedVideo()" style="margin-top: 10px;">
+                                <span>DOWNLOAD VIDEO</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-panel">
+                <div class="scanner-line"></div>
+                <h3>DECRYPTION PROTOCOLS</h3>
+                <ul>
+                    <li>256-bit AES Decryption</li>
+                    <li>Quantum Key Verification</li>
+                    <li>Secure Data Recovery</li>
+                    <li>Multi-Format Support</li>
+                    <li>Client-Side Processing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="enhanced-decrypt-script.js"></script>
+</body>
+</html>
