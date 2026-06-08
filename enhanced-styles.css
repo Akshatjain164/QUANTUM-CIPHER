@@ -455,7 +455,7 @@ input:focus + .input-line, textarea:focus + .input-line { opacity: 1; animation:
 .upload-placeholder small { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; }
 
 /* Buttons */
-.encrypt-btn, .copy-btn {
+.encrypt-btn,.decrypt-btn, .copy-btn {
     width: 100%;
     padding: 1.2rem;
     background: rgba(0, 255, 65, 0.1);
@@ -472,8 +472,8 @@ input:focus + .input-line, textarea:focus + .input-line { opacity: 1; animation:
     margin-top: 1rem;
     border-radius: 5px;
 }
-.encrypt-btn:hover, .copy-btn:hover { background: rgba(0, 255, 65, 0.2); box-shadow: 0 0 30px rgba(0, 255, 65, 0.5); transform: translateY(-2px); }
-.encrypt-btn:active, .copy-btn:active { transform: translateY(0); }
+.encrypt-btn:hover,.decrypt-btn:hover, .copy-btn:hover { background: rgba(0, 255, 65, 0.2); box-shadow: 0 0 30px rgba(0, 255, 65, 0.5); transform: translateY(-2px); }
+.encrypt-btn:active,.decrypt-btn:active, .copy-btn:active { transform: translateY(0); }
 .btn-glow {
     position: absolute;
     top: 0;
@@ -483,7 +483,7 @@ input:focus + .input-line, textarea:focus + .input-line { opacity: 1; animation:
     background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.4), transparent);
     transition: left 0.6s;
 }
-.encrypt-btn:hover .btn-glow { left: 100%; }
+.encrypt-btn:hover .btn-glow,.decrypt-btn:hover .btn-glow { left: 100%; }
 
 /* Progress Bar */
 .progress-bar {
